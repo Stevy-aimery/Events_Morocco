@@ -43,4 +43,22 @@ class EventController extends AbstractController
             'event' => $event,
         ]);
     }
+
+    // PARTIT RESERVATION
+    /**
+     * @Route("/reservation/new/{event_id}", name="reservation_new")
+     */
+    // public function new(Request $request, Event $event): Response
+    // {
+    //     if ($request->isMethod('POST')) {
+    //         // Handle the reservation logic here
+
+    //         return $this->redirectToRoute('reservation_success');
+    //     }
+
+    //     return $this->render('reservation/new.html.twig', [
+    //         'event' => $event,
+    //         'payment_modes' => ['Credit Card', 'Paypal', 'Bank Transfer'], // Example modes of payment
+    //     ]);
+    // }
 }
