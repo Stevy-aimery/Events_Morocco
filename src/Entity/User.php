@@ -13,8 +13,8 @@ class User
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column]
-    private ?int $idUser = null;
+    // #[ORM\Column]
+    // private ?int $idUser = null;
 
     #[ORM\Column(length: 100)]
     private ?string $nom = null;
@@ -33,17 +33,17 @@ class User
         return $this->id;
     }
 
-    public function getIdUser(): ?int
-    {
-        return $this->idUser;
-    }
+    // public function getIdUser(): ?int
+    // {
+    //     return $this->idUser;
+    // }
 
-    public function setIdUser(int $idUser): static
-    {
-        $this->idUser = $idUser;
+    // public function setIdUser(int $idUser): static
+    // {
+    //     $this->idUser = $idUser;
 
-        return $this;
-    }
+    //     return $this;
+    // }
 
     public function getNom(): ?string
     {
