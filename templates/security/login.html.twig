@@ -1,0 +1,52 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Log in!{% endblock %}
+
+{% block body %}
+<style>
+    .input-field {
+        border: 1px solid #E5E7EB;
+        padding: 0.5rem;
+        width: calc(100% - 1rem);
+        border-radius: 0.25rem;
+    }
+</style>
+
+<div class="bg-gray-100 flex justify-center items-center h-screen">
+    <div class="flex max-md:flex-col max-md:gap-0">
+        <div class="bg-white rounded-lg shadow-md pt-32 p-4 max-w-sm" style="height: 550px;">
+            <h1 class="text-2xl font-semibold mb-2">Welcome Back!</h1>
+
+            <form method="post">
+                {% if error %}
+                    <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+                {% endif %}
+
+                {% if app.user %}
+                    <div class="mb-3">
+                        You are logged in as {{ app.user.userIdentifier }}, <a href="{{ path('app_logout') }}">Logout</a>
+                    </div>
+                {% endif %}
+
+                <label for="inputEmail">Email</label>
+                <input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="input-field mb-2" autocomplete="email" required autofocus>
+                <label for="inputPassword">Password</label>
+                <input type="password" name="password" id="inputPassword" class="input-field mb-2" autocomplete="current-password" required>
+
+                <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+
+                <div class="checkbox mb-3">
+                    <label>
+                        <input type="checkbox" name="_remember_me"> Remember me
+                    </label>
+                </div>
+
+                <button class="bg-red-600 text-white py-2 px-4 rounded-md w-full mb-2" type="submit">Sign in</button>
+            </form>
+        </div>
+        <div class="flex flex-col w-150 max-md:ml-0 max-md:w-full" style="height: 550px;">
+            <img src="https://4kwallpapers.com/images/walls/thumbs_2t/2004.jpg" alt="Placeholder Image" class="w-auto h-full rounded-lg" style="max-width: 300px;">
+        </div>
+    </div>
+</div>
+{% endblock %}
