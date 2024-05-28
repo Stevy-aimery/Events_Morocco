@@ -1,0 +1,16 @@
+{# templates/event/show.html.twig #}
+ {% extends 'base.html.twig' %}
+
+{% block title %}{{ event.titre }}{% endblock %}
+
+{% block body %}
+    <h1>{{ event.titre }}</h1>
+    <p>{{ event.description }}</p>
+    <p>{{ event.dateDebut | date('Y-m-d H:i') }}</p>
+    <p>{{ event.dateFin | date('Y-m-d H:i') }}</p>
+    <p>{{ event.capacite }}</p>
+    <p>{{ event.prixBillet }}</p>
+    <p>{{ event.lieu}}</p>
+    <p>{{ event.image}}</p>
+    <a href="{{ path('event_booking', {'id': event.id}) }}">Book Now</a>
+{% endblock %}
