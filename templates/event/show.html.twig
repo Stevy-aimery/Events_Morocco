@@ -1,16 +1,32 @@
 {# templates/event/show.html.twig #}
- {% extends 'base.html.twig' %}
+{% extends 'base.html.twig' %}
 
-{% block title %}{{ event.titre }}{% endblock %}
+{% block title %}
+	{{ event.titre }}
+{% endblock %}
 
 {% block body %}
-    <h1>{{ event.titre }}</h1>
-    <p>{{ event.description }}</p>
-    <p>{{ event.dateDebut | date('Y-m-d H:i') }}</p>
-    <p>{{ event.dateFin | date('Y-m-d H:i') }}</p>
-    <p>{{ event.capacite }}</p>
-    <p>{{ event.prixBillet }}</p>
-    <p>{{ event.lieu}}</p>
-    <p>{{ event.image}}</p>
-    <a href="{{ path('event_booking', {'id': event.id}) }}">Book Now</a>
+	<div class="container">
+		<h1>{{ event.titre }}</h1>
+		<p>{{ event.image}}</p>
+		<p>{{ event.description }}</p>
+		<p>
+			<strong>Date Début:</strong>
+			{{ event.dateDebut | date('d/m/Y H:i') }}</p>
+		<strong>Date Fin:</strong>
+		{{ event.dateFin | date('d/m/Y H:i') }}</p>
+	<p>
+		<strong>Capacité d'accueil:</strong>
+		{{ event.capacite }}</p>
+	<p>
+		<strong>Prix du Billet:</strong>
+		{{ event.prixBillet }}</p>
+	<p>
+		<strong>Lieu de l'évenement:</strong>
+		{{ event.lieu}}</p>
+
+	<a href="{{ path('event_booking', {'id': event.id}) }}" class="btn btn-success">Réservation</a>
+</div>
+
+
 {% endblock %}

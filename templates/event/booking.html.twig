@@ -1,1 +1,30 @@
-<h1 style="text-align:center">ICI LA PAGE DE RESERVATION<h1>
+{# templates/reservation/new.html.twig #}
+{% extends 'base.html.twig' %}
+
+{% block body %}
+	<h1 style="text-align:center">ICI LA PAGE DE RESERVATION<h1>
+
+			<div class="container">
+				<h3>Réserver pour
+					{{ event.titre }}</h3>
+				<form
+					method="post">
+					<!-- Other reservation fields -->
+
+					<h4>Modes de paiement</h4>
+					{# <select name="payment_mode" id="payment_mode" class="form-control">
+						{% for mode in payment_modes %}
+							<option value="{{ mode }}">{{ mode }}</option>
+						{% endfor %}
+					</select> #}
+
+					<div
+						id="payment_details"><!-- Payment details fields based on selected mode -->
+					</div>
+
+					<button type="submit" class="btn btn-primary">Réserver</button>
+				</form>
+			</div>
+
+			<script>// JavaScript to handle showing payment details based on selected mode</script>
+	{% endblock %}
