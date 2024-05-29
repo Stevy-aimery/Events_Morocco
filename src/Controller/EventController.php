@@ -1,11 +1,14 @@
 <?php
+// src/Controller/EventController.php
 namespace App\Controller;
 
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Entity\Event;
+use App\Repository\EventRepository;
 
 class EventController extends AbstractController
 {
@@ -17,9 +20,14 @@ class EventController extends AbstractController
     }
 
     #[Route('/events', name: 'event_index')]
-    public function index(): Response
+    public function index(Request $request, EventRepository $eventRepository): Response
     {
-        $events = $this->entityManager->getRepository(Event::class)->findAll();
+        $titre = $request->query->get('titre', '');
+        $dateDebut = $request->query->get('dateDebut', '');
+        $lieu = $request->query->get('lieu', '');
+        $capacite = $request->query->get('capacite', '');
+
+        $events = $eventRepository->searchEvents($titre, $dateDebut, $lieu, $capacite);
 
         return $this->render('event/index.html.twig', [
             'events' => $events,
@@ -37,28 +45,8 @@ class EventController extends AbstractController
     #[Route('/events/{id}/booking', name: 'event_booking')]
     public function booking(Event $event): Response
     {
-        // Logique de réservation à ajouter ici
-
         return $this->render('event/booking.html.twig', [
             'event' => $event,
         ]);
     }
-
-    // PARTIT RESERVATION
-    /**
-     * @Route("/reservation/new/{event_id}", name="reservation_new")
-     */
-    // public function new(Request $request, Event $event): Response
-    // {
-    //     if ($request->isMethod('POST')) {
-    //         // Handle the reservation logic here
-
-    //         return $this->redirectToRoute('reservation_success');
-    //     }
-
-    //     return $this->render('reservation/new.html.twig', [
-    //         'event' => $event,
-    //         'payment_modes' => ['Credit Card', 'Paypal', 'Bank Transfer'], // Example modes of payment
-    //     ]);
-    // }
 }

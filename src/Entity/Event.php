@@ -112,7 +112,7 @@ class Event
 
     public function setPrixBillet(float $prixBillet): static
     {
-        $this->prixBillet = $prixBillet;
+        $this->prixBillet = $prixBillet; 
 
         return $this;
     }

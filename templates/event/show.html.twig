@@ -8,13 +8,13 @@
 {% block body %}
 	<div class="container">
 		<h1>{{ event.titre }}</h1>
-		<p>{{ event.image}}</p>
+		<img src={{ event.image }} class="card-img-top" alt={{ event.image }} style="width: 20rem;">
 		<p>{{ event.description }}</p>
 		<p>
 			<strong>Date Début:</strong>
-			{{ event.dateDebut | date('d/m/Y H:i') }}</p>
+			{{ event.dateDebut | date('d/m/Y') }}</p>
 		<strong>Date Fin:</strong>
-		{{ event.dateFin | date('d/m/Y H:i') }}</p>
+		{{ event.dateFin | date('d/m/Y') }}</p>
 	<p>
 		<strong>Capacité d'accueil:</strong>
 		{{ event.capacite }}</p>
