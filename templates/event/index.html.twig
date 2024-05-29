@@ -1,42 +1,112 @@
 {# templates/event/index.html.twig #}
 {% extends 'base.html.twig' %}
 
-{% block title %}Events{% endblock %}
+{% block title %}Events
+{% endblock %}
+
 
 {% block body %}
-    <h1 class="center">Events</h1>
-    
-    <div class="container">
-        <form method="get" action="{{ path('event_index') }}" class="form-inline mb-4">
-            <input type="text" name="titre" class="form-control mr-2" placeholder="Titre" value="{{ app.request.get('titre') }}">
-            <input type="date" name="dateDebut" class="form-control mr-2" value="{{ app.request.get('dateDebut') }}">
-            <input type="text" name="lieu" class="form-control mr-2" placeholder="Lieu" value="{{ app.request.get('lieu') }}">
-            <input type="number" name="capacite" class="form-control mr-2" placeholder="Capacité minimum" value="{{ app.request.get('capacite') }}">
-            <button type="submit" class="btn btn-primary mt-4">Rechercher</button>
-        </form>
+	<style>
+		.card-img-top {
+			height: 200px; /* Ajustez cette hauteur selon vos besoins */
+			object-fit: cover;
+		}
+	</style>
 
-        <div class="row">
-            {% for event in events %}
-                <div class="col-md-4">
-                    <div class="card">
-                        <img src="{{ event.image }}" class="card-img-top" alt="{{ event.image }}">
-                        <div class="card-body">
-                            <h5 class="card-title">{{ event.titre }}</h5>
-                            <p class="card-text">{{ event.description|slice(0, 50) }}...</p>
-                            <p class="card-text"><strong>Date:</strong> {{ event.dateDebut|date('d/m/Y') }}</p>
-                            <p class="card-text"><strong>Lieu:</strong> {{ event.lieu }}</p>
-                            <p class="card-text"><strong>Capacité:</strong> {{ event.capacite }}</p>
-                            <a href="{{ path('event_show', {'id': event.id}) }}" class="btn btn-primary">Voir Détails</a>
-                        </div>
-                    </div>
-                </div>
-            {% endfor %}
-        </div>
-    </div>
-	<script>
-        // Script pour réinitialiser les champs du formulaire au chargement de la page
-        window.onload = function() {
-            document.getElementById('searchForm').reset();
-        };
-    </script>
+
+	{# HEADER #}
+	<!-- Navbar -->
+	<nav
+		class="navbar navbar-expand-lg sticky-top navbar-light bg-body-tertiary">
+		<!-- Container wrapper -->
+		<div
+			class="container">
+			<!-- Navbar brand -->
+			<a class="navbar-brand me-2" href="">
+				<img src="{{ asset('images/logo.png') }}" alt="Logo" class="img-fluid" style="max-width: 80px;">
+			</a>
+
+
+			<!-- Toggle button -->
+			<button data-mdb-collapse-init class="navbar-toggler" type="button" data-mdb-target="#navbarButtonsExample" aria-controls="navbarButtonsExample" aria-expanded="false" aria-label="Toggle navigation">
+				<i class="fas fa-bars"></i>
+			</button>
+
+			<!-- Collapsible wrapper -->
+			<div
+				class="collapse navbar-collapse" id="navbarButtonsExample">
+				<!-- Left links -->
+				<ul class="navbar-nav me-auto mb-2 mb-lg-0">
+					<li class="nav-item">
+						<a class="nav-link" href="#">Dashboard</a>
+					</li>
+				</ul>
+				<!-- Left links -->
+
+				<div class="d-flex align-items-center">
+					<button data-mdb-ripple-init type="button" class="btn btn-link px-3 me-2">
+						Login
+					</button>
+					<button data-mdb-ripple-init type="button" class="btn btn-primary me-3">
+						Sign up for free
+					</button>
+					<a data-mdb-ripple-init class="btn btn-dark px-3" href="https://github.com/mdbootstrap/mdb-ui-kit" role="button">
+						<i class="fab fa-github"></i>
+					</a>
+				</div>
+			</div>
+			<!-- Collapsible wrapper -->
+		</div>
+		<!-- Container wrapper -->
+	</nav>
+	<!-- Navbar -->
+	{# HEADER #}
+
+	{# BANNER #}
+
+	{# BANNER #}
+
+	{# BODY #}
+		<h1 class="center"> Events</h1>
+
+	<div class="container">
+		<div class="col-md-4">
+			<form method="get" action="{{ path('event_index') }}" class="form-inline mb-4">
+				<input type="text" name="titre" class="form-control mr-2" placeholder="Titre" value="{{ app.request.get('titre') }}">
+				<input type="date" name="dateDebut" class="form-control mr-2" value="{{ app.request.get('dateDebut') }}">
+				<input type="text" name="lieu" class="form-control mr-2" placeholder="Lieu" value="{{ app.request.get('lieu') }}">
+				<input type="number" name="capacite" class="form-control mr-2" placeholder="Capacité minimum" value="{{ app.request.get('capacite') }}">
+				<button type="submit" class="btn btn-primary mt-4">Rechercher</button>
+			</form>
+		</div>
+
+
+		<div class="row">
+			{% for event in events %}
+				<div class="col-md-4">
+					<div class="card d-flex flex-column">
+						<img src="{{ event.image }}" class="card-img-top" alt="{{ event.image }}">
+						<div class="card-body">
+							<h5 class="card-title">{{ event.titre }}</h5>
+							<p class="card-text">{{ event.description|slice(0, 50) }}...</p>
+							<p class="card-text">
+								<strong>Date:</strong>
+								{{ event.dateDebut|date('d/m/Y') }}</p>
+							<p class="card-text">
+								<strong>Lieu:</strong>
+								{{ event.lieu }}</p>
+							<p class="card-text">
+								<strong>Capacité:</strong>
+								{{ event.capacite }}</p>
+							<a href="{{ path('event_show', {'id': event.id}) }}" class="btn btn-primary">Voir Détails</a>
+						</div>
+					</div>
+				</div>
+			{% endfor %}
+		</div>
+	</div>
+	<!-- Inclure le fichier JavaScript MDB init -->
+			<script src={{ asset('JS/mdb-init.js') }}></script>
+	{# BODY #}
+
 {% endblock %}
