@@ -4,7 +4,7 @@
 {% block title %}Events{% endblock %}
 
 {% block body %}
-    <h1>Events</h1>
+    <h1 class="center">Events</h1>
     
     <div class="container">
         <form method="get" action="{{ path('event_index') }}" class="form-inline mb-4">
@@ -12,7 +12,7 @@
             <input type="date" name="dateDebut" class="form-control mr-2" value="{{ app.request.get('dateDebut') }}">
             <input type="text" name="lieu" class="form-control mr-2" placeholder="Lieu" value="{{ app.request.get('lieu') }}">
             <input type="number" name="capacite" class="form-control mr-2" placeholder="Capacité minimum" value="{{ app.request.get('capacite') }}">
-            <button type="submit" class="btn btn-primary">Rechercher</button>
+            <button type="submit" class="btn btn-primary mt-4">Rechercher</button>
         </form>
 
         <div class="row">
@@ -33,4 +33,10 @@
             {% endfor %}
         </div>
     </div>
+	<script>
+        // Script pour réinitialiser les champs du formulaire au chargement de la page
+        window.onload = function() {
+            document.getElementById('searchForm').reset();
+        };
+    </script>
 {% endblock %}

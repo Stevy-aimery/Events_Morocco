@@ -34,6 +34,7 @@ class EventController extends AbstractController
         ]);
     }
 
+    // PARTIT DETAIL EVENT OF TRESOR
     #[Route('/events/{id}', name: 'event_show')]
     public function show(Event $event): Response
     {
@@ -41,7 +42,7 @@ class EventController extends AbstractController
             'event' => $event,
         ]);
     }
-
+    // PARTIT RESERVATION OF TRESOR
     #[Route('/events/{id}/booking', name: 'event_booking')]
     public function booking(Event $event): Response
     {
