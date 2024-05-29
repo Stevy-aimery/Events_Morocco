@@ -7,10 +7,18 @@
 			{% endblock %}
 		</title>
 		<link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-		<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text><text y=%221.3em%22 x=%220.2em%22 font-size=%2276%22 fill=%22%23fff%22>sf</text></svg>">
+		<link
+		rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text><text y=%221.3em%22 x=%220.2em%22 font-size=%2276%22 fill=%22%23fff%22>sf</text></svg>">
+		<!-- Inclure les file css compilé -->
+		<link rel="stylesheet" href="{{ asset('build/vendors-node_modules_hotwired_stimulus_dist_stimulus_js-node_modules_bootstrap_dist_css_boots-00c945.css') }}">
+		<link
+		rel="stylesheet" href="{{ asset('build/app.css') }}">
+
+		<!-- Inclure le bundle css -->
 		{% block stylesheets %}
 			{{ encore_entry_link_tags('app') }}
 		{% endblock %}
+
 
 		<!-- Font Awesome -->
 		<link
@@ -19,14 +27,26 @@
 		<link
 		href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" rel="stylesheet"/>
 		<!-- MDB -->
-		<link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/7.3.0/mdb.min.css" rel="stylesheet"/>
+		<link
+		href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/7.3.0/mdb.min.css" rel="stylesheet"/>
 
 
+		<!-- Inclure le bundle compilé js-->
+
+		<script src="{{ asset('build/runtime.js') }}"></script>
+		<script src="{{ asset('build/vendors-node_modules_hotwired_stimulus_dist_stimulus_js-node_modules_bootstrap_dist_css_boots-00c945.js') }}"></script>
+		<script src="{{ asset('build/app.js') }}"></script>
+		<script src="{{ asset('build/vendors-node_modules_mdb-ui-kit_js_mdb_min_js.js') }}"></script>
+		<script src="{{ asset('build/mdb-init.js') }}"></script>
+
+		<!-- Inclure le bundle js-->
 		{% block javascripts %}
 			{{ encore_entry_script_tags('app') }}
+
 			{% block importmap %}
 				{{ importmap('app') }}
 			{% endblock %}
+			{# {{ encore_entry_script_tags('mdb-init') }} #}
 		{% endblock %}
 	</head>
 	<body>
@@ -34,6 +54,8 @@
 
 			<!-- MDB -->
 			<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/7.3.0/mdb.umd.min.js"></script>
+			<!-- Inclure le fichier JavaScript MDB init -->
+			<script src={{ asset('assets/mdb-init.js') }}></script>
 
 		{% endblock %}
 	</body>

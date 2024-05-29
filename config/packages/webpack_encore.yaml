@@ -3,7 +3,7 @@ webpack_encore:
     output_path: '%kernel.project_dir%/public/build'
     # If multiple builds are defined (as shown below), you can disable the default build:
     # output_path: false
-
+    
     # Set attributes that will be rendered on all script and link tags
     script_attributes:
         defer: true
@@ -43,3 +43,4 @@ framework:
 #when@test:
 #    webpack_encore:
 #        strict_mode: false
+ 

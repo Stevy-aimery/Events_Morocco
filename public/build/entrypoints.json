@@ -3,11 +3,19 @@
     "app": {
       "js": [
         "/build/runtime.js",
+        "/build/vendors-node_modules_hotwired_stimulus_dist_stimulus_js-node_modules_bootstrap_dist_css_boots-00c945.js",
         "/build/app.js"
       ],
       "css": [
-        "/build/vendors-node_modules_bootstrap_dist_css_bootstrap_min_css.css",
+        "/build/vendors-node_modules_hotwired_stimulus_dist_stimulus_js-node_modules_bootstrap_dist_css_boots-00c945.css",
         "/build/app.css"
+      ]
+    },
+    "mdb-init": {
+      "js": [
+        "/build/runtime.js",
+        "/build/vendors-node_modules_mdb-ui-kit_js_mdb_min_js.js",
+        "/build/mdb-init.js"
       ]
     }
   }

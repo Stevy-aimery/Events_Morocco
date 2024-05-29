@@ -8,9 +8,5 @@ import './bootstrap.js';
  */
 import './styles/app.css';
 
-// // Initialization for ES Users
-// import { Collapse, Ripple, initMDB } from "mdb-ui-kit";
-
-// initMDB({ Collapse, Ripple });
 
 console.log('This log comes from assets/app.js - welcome to AssetMapper! 🎉');

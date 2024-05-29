@@ -1,11 +1,14 @@
 {
-    
   "devDependencies": {
     "@symfony/webpack-encore": "^4.6.1",
     "bootstrap": "^5.3.3",
     "core-js": "^3.0.0",
     "regenerator-runtime": "^0.13.0",
     "webpack-notifier": "^1.13.0"
+  },
+  "dependencies": {
+    "@hotwired/stimulus": "^3.2.2",
+    "mdb-ui-kit": "^7.3.0"
   },
   "scripts": {
     "dev": "encore dev",
