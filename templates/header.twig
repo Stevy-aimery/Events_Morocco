@@ -5,7 +5,7 @@
 		<div
 			class="container">
 			<!-- Navbar brand -->
-			<a class="navbar-brand me-2" href="">
+			<a class="navbar-brand me-2" href="{{ path('event_index') }}">
 				<img src="{{ asset('images/logo.png') }}" alt="Logo" class="img-fluid" style="max-width: 80px;">
 			</a>
 
@@ -27,15 +27,15 @@
 				<!-- Left links -->
 
 				<div class="d-flex align-items-center">
-					<button data-mdb-ripple-init type="button" class="btn btn-link px-3 me-2">
-						Login
+					<button data-mdb-ripple-init id="loginBtn" type="button" class="btn btn-link px-3 me-2">
+						Se Connecter
 					</button>
-					<button data-mdb-ripple-init type="button" class="btn btn-primary me-3">
-						Sign up for free
+					<button data-mdb-ripple-init id="SignInBtn"type="button" class="btn btn-primary me-3">
+						S'inscrire
 					</button>
-					<a data-mdb-ripple-init class="btn btn-dark px-3" href="https://github.com/mdbootstrap/mdb-ui-kit" role="button">
+					{# <a data-mdb-ripple-init id="" class="btn btn-dark px-3" href="https://github.com/mdbootstrap/mdb-ui-kit" role="button">
 						<i class="fab fa-github"></i>
-					</a>
+					</a> #}
 				</div>
 			</div>
 			<!-- Collapsible wrapper -->
@@ -43,3 +43,11 @@
 		<!-- Container wrapper -->
 	</nav>
 	<!-- Navbar -->
+    <script>
+        document.getElementById('loginBtn').onclick = function() {
+            window.location.href = "{{ path('app_login') }}";
+        };
+        document.getElementById('SignInBtn').onclick = function() {
+            window.location.href = "{{ path('app_register') }}";
+        };
+    </script>

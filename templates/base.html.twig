@@ -37,6 +37,9 @@
 </style>
 
 <body>
+{# HEADER #}
+	 {% include 'header.twig' %}	
+{# HEADER #}
     {% block body %}
 
     {% endblock %}
@@ -59,4 +62,8 @@
         {# {{ encore_entry_script_tags('mdb-init') }} #}
     {% endblock %}
 </body>
+{# HEADER #}
+	 {% include 'footer.twig' %}	
+	{# HEADER #}
+
 </html>
