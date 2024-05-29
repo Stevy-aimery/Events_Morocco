@@ -9,6 +9,8 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Entity\Event;
 use App\Repository\EventRepository;
+use App\Form\EventFormType;
+
 
 class EventController extends AbstractController
 {
@@ -50,4 +52,6 @@ class EventController extends AbstractController
             'event' => $event,
         ]);
     }
+
+   
 }
