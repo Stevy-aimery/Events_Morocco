@@ -6,6 +6,7 @@
 
 
 {% block body %}
+
 	<style>
 		.card-img-top {
 			height: 200px; /* Ajustez cette hauteur selon vos besoins */
@@ -14,27 +15,59 @@
 	</style>
 
 
-	
-
 	{# BANNER #}
+	<section class="flex justify-center items-center px-16 mt-6 w-full text-base bg-gray-50 max-md:px-5 max-md:max-w-full">
+		<div class="flex flex-col justify-center w-full max-w-screen-xl bg-gray-100 rounded-[40px] max-md:max-w-full">
+			<div class="flex overflow-hidden relative flex-col items-start p-20 w-full min-h-[720px] max-md:px-5 max-md:max-w-full">
+				<img loading="lazy" src="https://cdn.builder.io/api/v1/image/assets/TEMP/dad36ff583d5505e8a81de30e6f188bd05014696aaed679332e57b383397d911?apiKey=9ddf1e92aea345b5a071da762e0b1421&" alt="background event image" class="object-cover absolute inset-0 size-full"/>
 
+				<h1 class="relative mt-6 text-8xl font-bold tracking-tighter text-gray-50 leading-[96px] w-[658px] max-md:max-w-full max-md:text-4xl max-md:leading-10">
+					Decouvrir les derniers evenements
+				</h1>
+				<p class="relative mt-4 text-2xl tracking-tight leading-8 text-gray-50 w-[447px] max-md:max-w-full">
+					and book instantly via Bahrain Events
+				</p>
+				<form method="get" action="{{ path('event_index') }}" class="form-inline mb-8 flex relative flex-col justify-center self-stretch px-6 py-4 mt-20 rounded-3xl shadow-2xl backdrop-blur-lg bg-[linear-gradient(84deg,#FCFCFD_36.52%,rgba(252,252,253,0.83_98.8%))] leading-[150%] max-md:px-5 max-md:mt-10 max-md:max-w-full">
+					<input type="text" name="titre" class="form-control mr-2" placeholder="Saisir le Titre ici" value="{{ app.request.get('titre') }}">
+					<button type="submit" class="btn btn-danger text-light mt-4">Rechercher</button>
+				</form>
+
+			</div>
+		</div>
+	</section>
 	{# BANNER #}
 
 	{# BODY #}
-		<h1 class="center"> Events</h1>
-
 	<div class="container">
-		<div class="col-md-4">
-			<form method="get" action="{{ path('event_index') }}" class="form-inline mb-4">
-				<input type="text" name="titre" class="form-control mr-2" placeholder="Titre" value="{{ app.request.get('titre') }}">
-				<input type="date" name="dateDebut" class="form-control mr-2" value="{{ app.request.get('dateDebut') }}">
-				<input type="text" name="lieu" class="form-control mr-2" placeholder="Lieu" value="{{ app.request.get('lieu') }}">
-				<input type="number" name="capacite" class="form-control mr-2" placeholder="Capacité minimum" value="{{ app.request.get('capacite') }}">
-				<button type="submit" class="btn btn-primary mt-4">Rechercher</button>
-			</form>
+		<h1 class="center mb-5">Evenetments</h1>
+		{# Section Filter for Events #}
+		<div class="row">
+			<div class="col-md-2 fw-medium">Filtrer votre recherche :</div>
+			<div class="col-md-10 fw-medium ">
+				<form method="get" action="{{ path('event_index') }}" class="form-inline mb-4 d-flex">
+					<div class="col-md-2 mx-2">
+						<input type="date" name="dateDebut" class="form-control mr-2" value="{{ app.request.get('dateDebut') }}">
+					</div>
+					<div class="col-md-2 mx-2"><input type="text" name="lieu" class="form-control mr-2" placeholder="Lieu" value="{{ app.request.get('lieu') }}">
+					</div>
+					<div class="col-md-2 mx-2">
+						<input type="number" name="capacite" class="form-control mr-2" placeholder="Capacité minimum" value="{{ app.request.get('capacite') }}">
+					</div>
+					<div class="col-md-2 mx-2">
+						<input type="number" name="capacite" class="form-control mr-2" placeholder="Capacité minimum" value="{{ app.request.get('capacite') }}">
+					</div>
+					<div class="col-md-2 mx-2">
+						{# <input type="submit" class="btn btn-primary fw-bold"> #}
+						<button type="submit" class="btn btn-primary fw-bold">Filter</button>
+					</div>
+
+
+				</form>
+			</div>
+
 		</div>
 
-
+		{# Section Cards Events #}
 		<div class="row">
 			{% for event in events %}
 				<div class="col-md-4">
@@ -59,9 +92,45 @@
 			{% endfor %}
 		</div>
 	</div>
-	{# <!-- Inclure le fichier JavaScript MDB init -->
-			<script src={{ asset('assets/mdb-init.js') }}></script> #}
-	{# BODY #}
+	{# Section categorie #}
+	<section class="flex justify-center items-center px-16 py-10 bg-gray-50 max-md:px-5">
+		<div class="flex flex-col justify-center p-20 w-full max-w-screen-xl bg-gray-100 rounded-3xl max-md:px-5 max-md:max-w-full">
+			<h1 class="mt-8 text-5xl font-medium tracking-tighter text-center leading-[56.16px] text-zinc-800 max-md:max-w-full max-md:text-4xl">Explorer les Categories</h1>
+			<div class="flex gap-5 justify-center pr-7 mt-20 mb-2.5 whitespace-nowrap max-md:flex-wrap max-md:pr-5 max-md:mt-10">
+				<article class="flex flex-col px-2 pt-2 pb-6 bg-gray-50 rounded-2xl" tabindex="0">
+					<div class="justify-center px-3 pt-2 pb-1.5 text-xs font-bold leading-3 uppercase bg-gray-100 rounded-[32px] text-slate-500">12</div>
+					<div class="flex flex-col items-start pl-5 mt-4 text-base font-medium leading-6 text-center capitalize text-zinc-800">
+						<img loading="lazy" src="https://cdn.builder.io/api/v1/image/assets/TEMP/95f4dc4d50a448955d6d9be9e7078306d8f5a177f05002883e498b3af8f0e355?apiKey=9ddf1e92aea345b5a071da762e0b1421&" alt="Theater category icon" class="ml-4 w-20 aspect-square max-md:ml-2.5"/>
+						<span class="mt-4">Art & Théatre</span>
+					</div>
+				</article>
 
-	
+				<article class="flex flex-col px-2 pt-2 pb-6 bg-gray-50 rounded-2xl" tabindex="0">
+					<div class="justify-center px-3 pt-2 pb-1.5 text-xs font-bold leading-3 uppercase bg-gray-100 rounded-[32px] text-slate-500">45</div>
+					<div class="flex flex-col items-start pl-5 mt-4 text-base font-medium leading-6 text-center capitalize text-zinc-800">
+						<img loading="lazy" src="https://cdn.builder.io/api/v1/image/assets/TEMP/b301a716f7d33f4c36f0587b0e00cb6d71ec8ab6e8593b000ed54ea7c3d7191f?apiKey=9ddf1e92aea345b5a071da762e0b1421&" alt="Music category icon" class="ml-4 w-20 aspect-square max-md:ml-2.5"/>
+						<span class="mt-4">Music</span>
+					</div>
+				</article>
+				<article class="flex flex-col px-2 pt-2 pb-6 bg-gray-50 rounded-2xl" tabindex="0">
+					<div class="justify-center px-3 pt-2 pb-1.5 text-xs font-bold leading-3 uppercase bg-gray-100 rounded-[32px] text-slate-500">22</div>
+					<div class="flex flex-col items-start pl-5 mt-4 text-base font-medium leading-6 text-center capitalize text-zinc-800">
+						<img loading="lazy" src="https://cdn.builder.io/api/v1/image/assets/TEMP/20ba902a0645b5a21628b1582c8cae9bc28d1687ac473aec99bfb96c2382653a?apiKey=9ddf1e92aea345b5a071da762e0b1421&" alt="Festival category icon" class="ml-4 w-20 aspect-square max-md:ml-2.5"/>
+						<span class="mt-4">Festival</span>
+					</div>
+				</article>
+				<article class="flex flex-col px-2 pt-2 pb-6 bg-gray-50 rounded-2xl" tabindex="0">
+					<div class="justify-center px-3 pt-2 pb-1.5 text-xs font-bold leading-3 uppercase bg-gray-100 rounded-[32px] text-slate-500">66</div>
+					<div class="flex flex-col items-start pl-5 mt-4 text-base font-medium leading-6 text-center capitalize text-zinc-800">
+						<img loading="lazy" src="https://cdn.builder.io/api/v1/image/assets/TEMP/c0f28c476cd1e6e78829b552587ac615a68bb3a41d1baa0208045bf353e98f5a?apiKey=9ddf1e92aea345b5a071da762e0b1421&" alt="Sports category icon" class="ml-4 w-20 aspect-square max-md:ml-2.5"/>
+						<span class="mt-4">Sports</span>
+					</div>
+				</article>
+			</div>
+		</div>
+	</section>
+
+
 {% endblock %}
+
+
