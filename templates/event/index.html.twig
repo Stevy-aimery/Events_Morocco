@@ -43,16 +43,14 @@
 		{# Section Filter for Events #}
 		<div class="row">
 			<div class="col-md-2 fw-medium">Filtrer votre recherche :</div>
-			<div class="col-md-10 fw-medium ">
+			<div class="col-md-10 fw-medium">
 				<form method="get" action="{{ path('event_index') }}#search-results" class="form-inline mb-5 d-flex">
 					<div class="col-md-2 mx-2">
 						<input type="date" name="dateDebut" class="form-control mr-2" value="{{ app.request.get('dateDebut') }}">
 					</div>
 					<div class="col-md-2 mx-2"><input type="text" name="lieu" class="form-control mr-2" placeholder="Lieu" value="{{ app.request.get('lieu') }}">
 					</div>
-					<div class="col-md-2 mx-2">
-						<input type="number" name="capacite" class="form-control mr-2" placeholder="Capacité minimum" value="{{ app.request.get('capacite') }}">
-					</div>
+					
 					<div
 						class="col-md-2 mx-2">
 						{# <input type="submit" class="btn btn-primary fw-bold"> #}
@@ -62,14 +60,14 @@
 					</div>
 				</form>
 			</div>
-
 		</div>
+		
 
 		{# Section Cards Events #}
 		<section>
 			<div class="row">
 				{% for event in events %}
-					<div class="col-md-4">
+					<div class="col-md-4 mb-5">
 						<div class="card d-flex flex-column">
 							<img src="{{ event.image }}" class="card-img-top" alt="{{ event.image }}">
 							<div class="card-body">

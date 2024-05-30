@@ -33,7 +33,7 @@ class EventController extends AbstractController
         $events = $eventRepository->searchevents($titre, $dateDebut, $lieu, $capacite);
         
         return $this->render('event/index.html.twig', [
-            'events' => $events,
+            'events' => $events, 
         ]);
     }
     

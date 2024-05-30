@@ -1,4 +1,7 @@
 <!-- Navbar -->
+<!-- Font Awesome -->
+		<link
+		href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet"/>
 <style>
 	.custom-bg-color {
 		background-color: #4f4f4f;
@@ -11,7 +14,7 @@
 	class="navbar navbar-expand-lg sticky-top navbar-light bg-body-tertiary">
 	<!-- Container wrapper -->
 	<div
-		class="container">
+		class="container"> 
 		<!-- Navbar brand -->
 		<a class="navbar-brand me-2" href="{{ path('event_index') }}">
 			<img src="{{ asset('images/logo.png') }}" alt="Logo" class="img-fluid" style="max-width: 80px;">
@@ -29,17 +32,20 @@
 			<!-- Left links font-bold -->
 			<div></div>
 			<ul class="navbar-nav mb-2 mb-lg-0 mx-auto fw-medium">
-				<li class="nav-item mx-2">
-					<a class="nav-link" aria-current="page" href="{{ path('show_categories') }}#musique">Music</a>
+				<li class="nav-item mx-3">
+					<a class="nav-link" aria-current="page" href="{{ path('event_index') }}#musique"><i class="fa-solid fa-house me-1"></i> Accueil</a>
 				</li>
 				<li class="nav-item mx-2">
-					<a class="nav-link" aria-current="page" href="{{ path('show_categories') }}#sports">Sport</a>
+					<a class="nav-link" aria-current="page" href="{{ path('show_categories') }}#musique"><i class="fa-solid fa-music  me-1"></i> Music</a>
 				</li>
 				<li class="nav-item mx-2">
-					<a class="nav-link" aria-current="page" href="{{ path('show_categories') }}#art-theatre">Art & Théatre</a>
+					<a class="nav-link" aria-current="page" href="{{ path('show_categories') }}#sports"><i class="fa-solid fa-baseball me-1"></i> Sport</a>
 				</li>
 				<li class="nav-item mx-2">
-					<a class="nav-link" aria-current="page" href="{{ path('show_categories') }}#Fiesta">Festival</a>
+					<a class="nav-link" aria-current="page" href="{{ path('show_categories') }}#art-theatre"> <i class="fa-solid fa-masks-theater me-1"></i> Art & Théatre</a>
+				</li>
+				<li class="nav-item mx-2">
+					<a class="nav-link" aria-current="page" href="{{ path('show_categories') }}#Fiesta"><i class="fa-solid fa-wand-magic-sparkles me-1"></i> Festival</a>
 				</li>
 			</ul>
 
