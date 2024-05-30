@@ -15,6 +15,18 @@ class CategoryRepository extends ServiceEntityRepository
     {
         parent::__construct($registry, Category::class);
     }
+    /**
+     * Récupère toutes les catégories avec leurs événements associés.
+     * @return Category[]
+     */
+    public function findAllWithEvents(): array
+    {
+        return $this->createQueryBuilder('c')
+            ->leftJoin('c.events', 'e') // Join avec l'entité Event
+            ->addSelect('e') // Sélectionne également l'entité Event
+            ->getQuery()
+            ->getResult();
+    }
 
     //    /**
     //     * @return Category[] Returns an array of Category objects
