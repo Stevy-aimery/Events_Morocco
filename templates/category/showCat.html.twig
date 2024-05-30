@@ -1,0 +1,21 @@
+{# showCat.html.twig #}
+{% extends 'base.html.twig' %}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Liste des catégories</title>
+</head>
+<body>
+    <h1>Liste des catégories avec leurs produits</h1>
+
+    {% for category in categories %}
+        <h2>{{ category.name }}</h2>
+        <ul>
+            {% for event in category.events %}
+                <li>{{ event.titre }} - {{ event.description }}</li>
+            {% endfor %}
+        </ul>
+    {% endfor %}
+</body>
+</html>

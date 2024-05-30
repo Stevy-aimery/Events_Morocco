@@ -1,0 +1,20 @@
+{# templates/category/index.html.twig #}
+{% extends 'base.html.twig' %}
+
+{% block title %}
+	{# {{ categories.name }} #}
+{% endblock %}
+
+{% block body %} 
+	
+	{# Parcourir toutes les catégories et afficher leurs détails #}
+	{% for categorie in categories %}
+		<div>
+			<h5>{{ categorie.name }}</h5>
+			<p>{{ categorie.slug }}</p>
+			{# Si vous avez d'autres propriétés à afficher, ajoutez-les ici #}
+		</div>
+	{% endfor %}
+    
+
+{% endblock %}

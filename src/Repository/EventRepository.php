@@ -27,7 +27,7 @@ class EventRepository extends ServiceEntityRepository
             $qb->andWhere('e.dateDebut >= :dateDebut')
                ->setParameter('dateDebut', $dateDebut);
         }
-
+ 
         if ($lieu) {
             $qb->andWhere('e.lieu LIKE :lieu')
                ->setParameter('lieu', '%' . $lieu . '%');
@@ -39,5 +39,17 @@ class EventRepository extends ServiceEntityRepository
         }
 
         return $qb->getQuery()->getResult();
+    }
+     /**
+     * @return Event[] Returns an array of Event objects
+     */
+    public function findByCategory(Category $category)
+    {
+        return $this->createQueryBuilder('e')
+            ->andWhere('e.category = :category')
+            ->setParameter('category', $category)
+            ->orderBy('e.date', 'ASC')
+            ->getQuery()
+            ->getResult();
     }
 }

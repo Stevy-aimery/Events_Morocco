@@ -10,6 +10,7 @@ use Symfony\Component\Routing\Annotation\Route;
 use App\Entity\Event;
 use App\Repository\EventRepository;
 use App\Form\EventFormType;
+use App\Repository\CategoryRepository;
 
 
 class EventController extends AbstractController
@@ -28,13 +29,14 @@ class EventController extends AbstractController
         $dateDebut = $request->query->get('dateDebut', '');
         $lieu = $request->query->get('lieu', '');
         $capacite = $request->query->get('capacite', '');
-
-        $events = $eventRepository->searchEvents($titre, $dateDebut, $lieu, $capacite);
-
+        
+        $events = $eventRepository->searchevents($titre, $dateDebut, $lieu, $capacite);
+        
         return $this->render('event/index.html.twig', [
             'events' => $events,
         ]);
     }
+    
 
     // PARTIT DETAIL EVENT OF TRESOR
     #[Route('/events/{id}', name: 'event_show')]

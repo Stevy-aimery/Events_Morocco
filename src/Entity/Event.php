@@ -40,10 +40,30 @@ class Event
     #[ORM\Column(length: 255)]
     private ?string $lieu = null;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity.Category", inversedBy="events")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $category;
+    
+
+    public function getCategory(): ?Category
+    {
+        return $this->category;
+    }
+
+    public function setCategory(?Category $category): self
+    {
+        $this->category = $category;
+
+        return $this;
+    }
+
     public function getId(): ?int
     {
         return $this->id;
     }
+
 
     public function getTitre(): ?string
     {
@@ -140,4 +160,7 @@ class Event
 
         return $this;
     }
+
+   
+
 }
