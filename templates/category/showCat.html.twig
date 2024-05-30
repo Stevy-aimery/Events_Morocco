@@ -1,26 +1,54 @@
 {# showCat.html.twig #}
 {% extends 'base.html.twig' %}
 
-{% block body %} 
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Liste des catégories</title>
-</head>
-<body>
-    <h1>Liste des catégories avec leurs produits</h1>
+{% block body %}
+	<!DOCTYPE html>
+	<html>
+		<head>
+			<title>Liste des catégories</title>
+		</head>
+		<body>
 
-    {% for category in categories %}
-        <h2>{{ category.name }}</h2>
-        <ul>
-            {% for event in category.events %}
-                <li>{{ event.titre }} - {{ event.description }}</li>
-            {% endfor %}
-        </ul>
-    {% endfor %}
-    
-   
-</body>
 
-</html>
- {% endblock %}
+			<div class="container">
+				<h1 id="search-results" class="mt-5 mb-8">Liste des catégories avec leurs produits</h1>
+
+				{% for category in categories %}
+					<h2 id="{{ category.slug }}" class="mt-8">{{ category.name }}</h2>
+					{# Reste du code pour afficher les événements de la catégorie #}
+
+					{# Section Cards Events #}
+					<section>
+						<div class="row">
+							{% for event in category.events %}
+								<div class="col-md-4 my-6">
+									<div class="card d-flex flex-column">
+										<img src="{{ event.image }}" class="card-img-top" alt="{{ event.image }}">
+										<div class="card-body">
+											<h5 class="card-title">{{ event.titre|upper }}</h5>
+											<p class="card-text">{{ event.description|slice(0, 50) }}...</p>
+											<p class="card-text">
+												<strong>Date:</strong>
+												{{ event.dateDebut|date('d/m/Y') }}</p>
+											<p class="card-text">
+												<strong>Lieu:</strong>
+												{{ event.lieu|capitalize }}</p>
+											<p class="card-text">
+												<strong>Capacité:</strong>
+												{{ event.capacite }}</p>
+											<a href="{{ path('event_show', {'id': event.id}) }}" class="btn btn-danger text-light">Voir Détails</a>
+										</div>
+									</div>
+								</div>
+							{% endfor %}
+						</div>
+					</section>
+
+				{% endfor %}
+			</div>
+
+
+		</body>
+
+	</html>
+{% endblock %}
