@@ -17,14 +17,12 @@ class Booking
     #[ORM\Column(length: 255)]
     private ?string $libelle = null;
 
-    #[ORM\Column(type: Types::DATETIME_MUTABLE)]
-    private ?\DateTimeInterface $dateHeureDebut = null;
+    
 
     #[ORM\Column]
     private ?float $montant = null;
 
-    #[ORM\Column(type: Types::TIME_MUTABLE)]
-    private ?\DateTimeInterface $heureFin = null;
+   
 
     public function getId(): ?int
     {
@@ -43,18 +41,7 @@ class Booking
         return $this;
     }
 
-    public function getDateHeureDebut(): ?\DateTimeInterface
-    {
-        return $this->dateHeureDebut;
-    }
-
-    public function setDateHeureDebut(\DateTimeInterface $dateHeureDebut): static
-    {
-        $this->dateHeureDebut = $dateHeureDebut;
-
-        return $this;
-    }
-
+   
     public function getMontant(): ?float
     {
         return $this->montant;
@@ -67,15 +54,5 @@ class Booking
         return $this;
     }
 
-    public function getHeureFin(): ?\DateTimeInterface
-    {
-        return $this->heureFin;
-    }
 
-    public function setHeureFin(\DateTimeInterface $heureFin): static
-    {
-        $this->heureFin = $heureFin;
-
-        return $this;
-    }
 }

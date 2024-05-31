@@ -24,9 +24,7 @@
 				<h1 class="relative mt-6 text-8xl font-bold tracking-tighter text-gray-50 leading-[96px] w-[658px] max-md:max-w-full max-md:text-4xl max-md:leading-10">
 					Decouvrir les derniers evenements
 				</h1>
-				<p class="relative mt-4 text-2xl tracking-tight leading-8 text-gray-50 w-[447px] max-md:max-w-full">
-					and book instantly via Bahrain Events
-				</p>
+				
 				<form method="get" action="{{ path('event_index') }}#search-results" class="form-inline mb-8 flex relative flex-col justify-center self-stretch px-6 py-4 mt-20 rounded-3xl shadow-2xl backdrop-blur-lg bg-[linear-gradient(84deg,#FCFCFD_36.52%,rgba(252,252,253,0.83_98.8%))] leading-[150%] max-md:px-5 max-md:mt-10 max-md:max-w-full">
 					<input type="text" name="titre" class="form-control mr-2" placeholder="Saisir le Titre ici" value="{{ app.request.get('titre') }}">
 					<button type="submit" class="btn btn-danger text-light mt-4">Rechercher</button>

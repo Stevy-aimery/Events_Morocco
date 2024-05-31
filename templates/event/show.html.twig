@@ -1,32 +1,74 @@
 {# templates/event/show.html.twig #}
 {% extends 'base.html.twig' %}
 
-{% block title %}
-	{{ event.titre }}
-{% endblock %}
-
 {% block body %}
-	<div class="container">
-		<h1>{{ event.titre }}</h1>
-		<img src={{ event.image }} class="card-img-top" alt={{ event.image }} style="width: 20rem;">
-		<p>{{ event.description }}</p>
-		<p>
-			<strong>Date Début:</strong>
-			{{ event.dateDebut | date('d/m/Y') }}</p>
-		<strong>Date Fin:</strong>
-		{{ event.dateFin | date('d/m/Y') }}</p>
-	<p>
-		<strong>Capacité d'accueil:</strong>
-		{{ event.capacite }}</p>
-	<p>
-		<strong>Prix du Billet:</strong>
-		{{ event.prixBillet }}</p>
-	<p>
-		<strong>Lieu de l'évenement:</strong>
-		{{ event.lieu}}</p>
+<section class="flex flex-col justify-center items-center bg-gray-50 py-8 px-4 sm:px-6 lg:px-8 rounded-3xl border border-gray-200 shadow-2xl max-w-[95vw] mx-auto lg:w-4/5">
+    <!-- Event Image -->
+    <div class="w-full overflow-hidden rounded-3xl shadow-lg">
+        <img src="{{ asset('images/concerttt.jpg') }}" alt="{{ event.titre }}" class="object-cover w-full h-[32rem] sm:h-[40rem] lg:h-[48rem]">
+    </div>
+    <!-- Event Description and Information Container -->
+    <div class="w-full mt-8 flex justify-between">
+        <!-- Event Description -->
+        <div class="bg-white p-6 rounded-3xl border border-gray-200 shadow-lg w-3/5 mr-6">
+            <h2 class="text-lg font-bold mb-4 text-orange-500">{{ event.titre | upper }}</h2>
+            <p class="text-base leading-6 text-gray-800">{{ event.description }}</p>
+        </div>
+        <!-- Event Information and Ticket Selection -->
+        <div class="bg-white p-6 rounded-3xl border border-gray-200 shadow-lg w-2/5">
+            <h2 class="text-lg font-bold mb-4 text-orange-500">Informations</h2>
+            <div class="mb-4">
+                <p class="text-sm font-bold text-gray-800">Date de début:</p>
+                <p class="text-base leading-6 text-gray-800">{{ event.datedebut.format('Y-m-d H:i:s') }}</p>
+            </div>
+            <div class="mb-4">
+                <p class="text-sm font-bold text-gray-800">Date de fin:</p>
+                <p class="text-base leading-6 text-gray-800">{{ event.datefin.format('Y-m-d H:i:s') }}</p>
+            </div>
+            <div class="mb-4">
+                <p class="text-sm font-bold text-gray-800">Prix d'entrée:</p>
+                <p class="text-base leading-6 text-gray-800">{{ event.prixBillet }} €</p>
+            </div>
+            <div class="mb-4">
+                <p class="text-sm font-bold text-gray-800">Lieu:</p>
+                <p class="text-base leading-6 text-gray-800">{{ event.lieu }}</p>
+            </div>
 
-	<a href="{{ path('event_booking', {'id': event.id}) }}" class="btn btn-success">Réservation</a>
-</div>
+            <!-- Ticket Selection -->
+            <div class="flex flex-col mb-4">
+                <label for="places" class="block text-sm font-bold text-gray-800">Nombre de places</label>
+                <select id="places" name="places" class="mt-1 block pl-3 pr-10 py-2 text-base border border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md" onchange="updateTotalPrice()">
+                    <option value="1">1 place</option>
+                    <option value="2">2 places</option>
+                    <option value="3">3 places</option>
+                    <option value="4">4 places</option>
+                    <option value="5">5 places</option>
+                </select>
+            </div>
 
+            <!-- Prix total et Bouton -->
+            <div class="flex justify-between items-center">
+                <p class="text-base font-bold text-gray-800">Prix total:</p>
+                <p id="totalPrice" class="text-lg font-semibold text-orange-500">{{ event.prixBillet }} €</p>
+            </div>
 
+            <!-- Bouton de réservation -->
+            <a href="{{ path('app_reservation', {'eventId': event.id}) }}" class="mt-6 w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-black bg-orange-500 hover:bg-orange-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                Réserver 
+            </a>
+        </div>
+    </div>
+</section>
+
+{% endblock %}
+{% block javascript %}
+<script>
+function updateTotalPrice() {
+    const places = document.getElementById('places');
+    const selectedOption = places.options[places.selectedIndex];
+    const pricePerTicket = {{ event.prixBillet }};
+    const totalPrice = pricePerTicket * selectedOption.value;
+    document.getElementById('totalPrice').textContent = totalPrice.toFixed(2) + ' €';
+}
+</script>
 {% endblock %}
