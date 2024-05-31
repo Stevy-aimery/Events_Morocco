@@ -4,10 +4,10 @@
 
 {% block body %}
     <div class="container mx-auto px-4 py-8">
-        <h1 class="text-3xl font-semibold mb-6">Welcome to the Admin Dashboard</h1>
+        <h1 class="text-3xl font-semibold mb-6">Bienvenu sur le tableau de bord Admin</h1>
 
         <a href="{{ path('event_create') }}" class="inline-block bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mb-6">Create Event</a>
-
+        <h1 class="text-2xl font-semibold mb-6">La list dévenements à gerer</h1>
         <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
             {% for event in events %}
                 <div class="bg-white rounded-lg shadow-md">
@@ -26,5 +26,26 @@
                 </div>
             {% endfor %}
         </div>
+        <div class="container mx-auto px-4 py-8">
+        
+
+        <h1 class="text-2xl font-semibold mb-6">Liste des réservations</h1>
+        <table class="table-auto w-full">
+            <thead>
+                <tr>
+                    <th class="px-4 py-2">Événement</th>
+                    <th class="px-4 py-2">Montant</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for reservation in reservations %}
+                    <tr>
+                        <td class="border px-4 py-2">{{ reservation.libelle }}</td>
+                        <td class="border px-4 py-2">{{ reservation.montant }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
     </div>
 {% endblock %}

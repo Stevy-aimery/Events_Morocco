@@ -9,6 +9,7 @@ use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use App\Entity\Event;
 use App\Repository\EventRepository;
+use App\Repository\BookingRepository;
 use App\Form\EventFormType;
 
 
@@ -17,19 +18,23 @@ class AdminController extends AbstractController
   
 
     #[Route('/admin', name: 'app_admin')]
-    public function index(EventRepository $eventRepository): Response
+    public function index(EventRepository $eventRepository, BookingRepository $bookingRepository): Response
     {
-        // Retrieve list of events from the database
-        $events = $eventRepository->findAll();
-    
-        // Create a new event form
-         $event = new Event();
-         $form = $this->createForm(EventFormType::class, $event);
+    // Retrieve list of events from the database
+    $events = $eventRepository->findAll();
 
-            return $this->render('admin/dashboard.html.twig', [
-                'events' => $events,
-                'eventForm' => $form->createView(),
-            ]);
+    // Retrieve list of reservations from the database
+    $reservations = $bookingRepository->findAll();
+
+    // Create a new event form
+    $event = new Event();
+    $form = $this->createForm(EventFormType::class, $event);
+
+    return $this->render('admin/dashboard.html.twig', [
+        'events' => $events,
+        'reservations' => $reservations,
+        'eventForm' => $form->createView(),
+    ]);
     }
 
 
