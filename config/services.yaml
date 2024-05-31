@@ -19,6 +19,14 @@ services:
             - '../src/DependencyInjection/'
             - '../src/Entity/'
             - '../src/Kernel.php'
+    
+    App\Form\DataTransformer\CategoryToNumberTransformer:
+        arguments:
+            $entityManager: '@doctrine.orm.entity_manager'
 
+    App\Form\EventFormType:
+        arguments:
+            $categoryTransformer: '@App\Form\DataTransformer\CategoryToNumberTransformer'
+        tags: ['form.type']
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones

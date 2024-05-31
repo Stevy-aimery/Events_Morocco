@@ -32,6 +32,11 @@
                 {{ form_widget(eventForm.capacite, {'attr': {'class': 'mt-1 block w-full p-2 border border-gray-300 rounded-md'}}) }}
                 {{ form_errors(eventForm.capacite) }}
             </div>
+             <div>
+                {{ form_label(eventForm.category, 'Category (1, 2, 3, or 4)', {'label_attr': {'class': 'block text-sm font-medium text-gray-700'}}) }}
+                {{ form_widget(eventForm.category, {'attr': {'class': 'mt-1 block w-full p-2 border border-gray-300 rounded-md'}}) }}
+                {{ form_errors(eventForm.category) }}
+            </div>
             <div>
                 {{ form_label(eventForm.prixBillet, 'Ticket Price', {'label_attr': {'class': 'block text-sm font-medium text-gray-700'}}) }}
                 {{ form_widget(eventForm.prixBillet, {'attr': {'class': 'mt-1 block w-full p-2 border border-gray-300 rounded-md'}}) }}

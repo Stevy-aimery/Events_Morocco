@@ -52,24 +52,31 @@
 			<!-- Left links -->
 
 			<div class="d-flex align-items-center ms-auto">
-				<button data-mdb-ripple-init id="loginBtn" type="button" class="btn btn-link px-3 me-2 custom-color fw-bolder">
-					Se Connecter
-				</button>
-				<button data-mdb-ripple-init id="SignInBtn" type="button" class="btn btn-primary fw-semibold btn-danger text-light me-3">
-					S'inscrire 
-				</button>
+				{% if is_granted('IS_AUTHENTICATED_FULLY') %}
+				<span class="mr-3">Hello, {{ app.user.firstName }}</span>
+				   {% if is_granted('ROLE_ADMIN') %}
+                        <a href="{{ path('app_admin') }}" class="btn btn-link px-3 me-2 custom-color fw-bolder">
+                            Dashboard
+                        </a>
+                    {% endif %}
+					<form action="{{ path('app_logout') }}" method="post">
+						<button type="submit" class="btn btn-link px-3 me-2 custom-color fw-bolder">
+							Logout
+						</button>
+					</form>
+				{% else %}
+					<button onclick="window.location.href='{{ path('app_login') }}'" type="button" class="btn btn-link px-3 me-2 custom-color fw-bolder">
+						Se Connecter
+					</button>
+					<button onclick="window.location.href='{{ path('app_register') }}'" type="button" class="btn btn-primary fw-semibold btn-danger text-light me-3">
+						S'inscrire
+					</button>
+				{% endif %}
 			</div>
+
 		</div>
 		<!-- Collapsible wrapper -->
 	</div>
 	<!-- Container wrapper -->
 </nav>
-<!-- Navbar -->
-<script>
-	document.getElementById('loginBtn').onclick = function () {
-window.location.href = "{{ path('app_login') }}";
-};
-document.getElementById('SignInBtn').onclick = function () {
-window.location.href = "{{ path('app_register') }}";
-};
-</script>
+
