@@ -60,15 +60,18 @@
     </div>
 </section>
 
-{% endblock %}
-{% block javascript %}
 <script>
-function updateTotalPrice() {
-    const places = document.getElementById('places');
-    const selectedOption = places.options[places.selectedIndex];
-    const pricePerTicket = {{ event.prixBillet }};
-    const totalPrice = pricePerTicket * selectedOption.value;
-    document.getElementById('totalPrice').textContent = totalPrice.toFixed(2) + ' €';
-}
+  // Fonction pour mettre à jour le prix total en fonction du nombre de places sélectionnées
+  function updateTotalPrice() {
+    // Récupérer le nombre de places sélectionnées
+    var selectedPlaces = document.getElementById("places").value;
+    // Récupérer le prix du billet
+    var ticketPrice = {{ event.prixBillet }};
+    // Calculer le prix total en multipliant le nombre de places par le prix du billet
+    var totalPrice = selectedPlaces * ticketPrice;
+    // Mettre à jour le contenu de l'élément HTML affichant le prix total
+    document.getElementById("prix-total").textContent = "Prix total: " + totalPrice + " €";
+  }
 </script>
+
 {% endblock %}
